@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자금운용현황</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <script src="../script/jquery-3.6.0.js"></script>
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <div class="visual">
+      <div class="wd120">
+        <div class="visual_tit">
+          <h3>자금운용현황</h3>
+          <div class="breadcrumb">
+            <a href="../html/main.html"
+              ><img src="../images/btn_home.svg" alt="홈페이지 메인 바로가기"
+            /></a>
+            <img src="../images/ico_bc_arrow.svg" alt="방향 아이콘" />
+            <a href="#"><span class="breadcrumb_txt">자금운용현황</span></a>
+          </div>
+        </div>
+        <div class="excel_dl">
+          <button class="btn_excel">
+            <img src="../images/btn_excel.svg" alt="엑셀 다운로드" />
+            <span>엑셀 다운로드</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-option-wrap">
+      <div class="search-option">
+        <div>
+          <span>회계연도</span>
+        </div>
+        <div class="search-menu">
+          <div class="select">
+            <span>선택</span>
+            <img
+              class="select_down"
+              src="../images/ico_select_down.svg"
+              alt=""
+            />
+          </div>
+          <div class="options-list">
+            <div class="option">2024</div>
+            <div class="option">2023</div>
+            <div class="option">2022</div>
+            <div class="option">2021</div>
+          </div>
+        </div>
+      </div>
+      <div class="search-option">
+        <div>
+          <span>회계구분</span>
+        </div>
+        <div class="search-menu">
+          <div class="select">
+            <span>전체</span>
+            <img
+              class="select_down"
+              src="../images/ico_select_down.svg"
+              alt=""
+            />
+          </div>
+          <div class="options-list">
+            <div class="option">공기업회계</div>
+            <div class="option">기금회계</div>
+            <div class="option">기타특별회계</div>
+            <div class="option">농기계임대사업특별회계</div>
+            <div class="option">발전소주변지역지원사업특별회계</div>
+            <div class="option">수도사업특별회계</div>
+            <div class="option">수질개선특별회계</div>
+            <div class="option">의료급여기금특별회계</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+  </body>
+
+  <script>
+    $(function () {
+      $("#header").load("header.html");
+      $("#footer").load("footer.html");
+    });
+
+    const select = document.querySelector(".select");
+    const options_list = document.querySelector(".options-list");
+    const options = document.querySelectorAll(".option");
+
+    // show & hide options list
+    select.addEventListener("click", () => {
+      options_list.classList.toggle("active");
+
+      // 화살표 회전 처리
+      const arrow = select.querySelector(".select_down");
+      arrow.classList.toggle("rotate");
+    });
+
+    // select option
+    options.forEach((option) => {
+      option.addEventListener("click", () => {
+        options.forEach((option) => {
+          option.classList.remove("selected");
+        });
+        select.querySelector("span").innerHTML = option.innerHTML;
+        option.classList.add("selected");
+
+        options_list.classList.toggle("active");
+
+        // 화살표 회전 처리
+        const arrow = select.querySelector(".select_down");
+        arrow.classList.toggle("rotate");
+      });
+    });
+  </script>
+
+  <script src="../script/common.js"></script>
+</html>
